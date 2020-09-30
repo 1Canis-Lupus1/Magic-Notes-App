@@ -1,0 +1,16 @@
+body {
+  padding: 50px;
+  background-color: grey;
+}
+
+#container {
+  display: flex;
+  justify-content: center;
+}
+
+#body-container{
+  display: list-item;
+  padding: 50px;
+  height: 100vh;
+  background-color: rgb(247, 160, 120);
+}
