@@ -80,10 +80,10 @@ class TodoList extends Component{
                     <TodoItems entries={this.state.items} edit={this.editItem} delete={this.deleteItem} />
                     <hr/>
                     <div className="stats">
-                        <p>Filters: </p>
-                        <button onClick={this.handleAll}>All</button>
-                        <button onClick={this.handleActive}>Active</button>
-                        <button onClick={this.handleCompleted}>Completed</button>
+                        <button onclick={this.handleSelect} class='btn-stats select'>Select All</button>&nbsp;
+                        <button onClick={this.handleAll} class='btn-stats all'>All</button>&nbsp;
+                        <button onClick={this.handleActive} class='btn-stats active'>Active</button>&nbsp;
+                        <button onClick={this.handleCompleted} class='btn-stats completed'>Completed</button>
                     </div>
                     <Completed />
                 </div>
