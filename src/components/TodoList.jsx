@@ -1,6 +1,5 @@
 import React,{Component} from 'react';
 import TodoItems from './TodoItems';
-import Completed from './Completed';
 import './TodoList.css';
 
 class TodoList extends Component{
@@ -8,12 +7,14 @@ class TodoList extends Component{
         super(props);
 
         this.state={
-            items: []
+            items: [],
+            status: "All"
         };
 
         this.addItem=this.addItem.bind(this);
         this.deleteItem=this.deleteItem.bind(this);
         this.editItem=this.editItem.bind(this);
+        this.checkItem=this.checkItem.bind(this);
     }
 
     //Concat the new list to our state - 'item'
@@ -22,7 +23,8 @@ class TodoList extends Component{
         if(this._inputElement.value.trim() !== ""){
             var newItem={
                 text: this._inputElement.value,
-                key: Date.now()
+                key: Date.now(),
+                checked: false
             };
 
             this.setState((prevState)=>{
@@ -45,7 +47,7 @@ class TodoList extends Component{
         });
 
         this.setState({
-            items: filteredItems
+            items: filteredItems,
         });
     }
 
@@ -66,6 +68,34 @@ class TodoList extends Component{
         });
     }
 
+    checkItem(key){
+        let checkedItem= this.state.items.filter(function(item){
+            return(item.key === key);
+        });
+
+        checkedItem.checked= !checkedItem
+
+        console.log("Checked item is: ", checkedItem);
+    }
+
+    handleSelect(event){
+     this.setState({
+         status: event.target.value
+     })   
+    }
+
+    // handleAll(){
+    //     console.log('Handling All');
+    // }
+
+    // handleActive(){
+    //     console.log("Handle Active");
+    // }
+
+    // // handleCompleted(){
+    //     console.log("Handling Completed");
+    // }
+
     render(){
         return(
             <React.Fragment>
@@ -77,15 +107,14 @@ class TodoList extends Component{
                             <button type="submit">Add Note</button>
                         </form>
                     </div>
-                    <TodoItems entries={this.state.items} edit={this.editItem} delete={this.deleteItem} />
+                    <TodoItems entries={this.state.items} edit={this.editItem} delete={this.deleteItem} check={this.checkItem} status={this.state.status}/>
                     <hr/>
                     <div className="stats">
-                        <button onclick={this.handleSelect} class='btn-stats select'>Select All</button>&nbsp;
-                        <button onClick={this.handleAll} class='btn-stats all'>All</button>&nbsp;
-                        <button onClick={this.handleActive} class='btn-stats active'>Active</button>&nbsp;
-                        <button onClick={this.handleCompleted} class='btn-stats completed'>Completed</button>
+                        <button onClick={this.handleSelect} className='btn-stats select' id="rd-1" >Select All</button>&nbsp;
+                        <button onClick={this.handleSelect} value="All" className='btn-stats all'>All</button>&nbsp;
+                        <button onClick={this.handleSelect} value="Active" className='btn-stats active'>Active</button>&nbsp;
+                        <button onClick={this.handleSelect} value="Completed" className='btn-stats completed'>Completed</button>
                     </div>
-                    <Completed />
                 </div>
             </React.Fragment>
         );
