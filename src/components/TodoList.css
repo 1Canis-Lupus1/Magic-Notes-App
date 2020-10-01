@@ -1,3 +1,8 @@
+.todoListMain{
+    border: 2px solid black;
+    padding: 20px;
+}
+
 .todoListMain .header input{
     padding: 10px;
     border: 2px solid #000000;
@@ -43,4 +48,9 @@ ul.theList{
 .todoListMain .theList li:hover{
     background-color: #88f1f8;
     cursor: pointer;
+}
+
+.stats{
+    border: 2px solid black;
+    padding: 10px;
 }
