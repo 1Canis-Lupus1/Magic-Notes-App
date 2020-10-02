@@ -5,40 +5,41 @@ class TodoItems extends Component{
         super(props);
         
         this.createTasks=this.createTasks.bind(this);
-        // this.state={
-        //     status: "All"
-        // }
     }
 
 
-    edit(key){
-        this.props.edit(key);
+    edit(key,status){
+        this.props.edit(key,status);
     }
     
-    delete(key){
-        this.props.delete(key);
+    delete(key,status){
+        this.props.delete(key,status);
+        console.log(key,status)
     }
 
-    handleCheck(key){
-        this.props.check(key);
+    handleCheck(key,status){
+        this.props.check(key,status);
     }
+
+    active(key,status){
+        this.props.active(key,status);
+    }
+
+
     
     createTasks(item){
-        let styling={
+        const styling={
             color:"red",
             marginLeft:"auto"
         }
-        if(this.props.status === "All"){
-            return (
-                    <li key={item.key} onDoubleClick={()=> this.edit(item.key)} style={{display:"flex"}}><input type="checkbox" key={item.key} checked={this.props.isChecked} onClick={this.handleCheck} />&nbsp;{item.text}<span style={styling} onClick={()=>this.delete(item.key)}><strong>X</strong></span></li>
-                );
-            }
-        else if(this.props.status === "Active" && !item.checked ){
-            return(
-                <li key={item.key} onDoubleClick={()=> this.edit(item.key)} style={{display:"flex"}}><input type="checkbox" key={item.key} checked={this.props.isChecked} onClick={this.handleCheck} />&nbsp;{item.text}<span style={styling} onClick={()=>this.delete(item.key)}><strong>X</strong></span></li>
-            );
 
-    }
+        // console.log(item.key)
+
+        return(
+            
+            <li key={item.key} onDoubleClick={()=> this.edit(item.key,item.status)} style={{display:"flex"}}><input type="checkbox" key={item.key} checked={this.props.isChecked} onClick={()=>this.handleCheck(item.key,item.status)} />&nbsp;{item.text}<span style={styling} onClick={()=>this.delete(item.key,item.status)}><strong>X</strong></span></li>
+            
+        )
 }
     render(){
         // console.log(todoEnteries);
@@ -57,11 +58,16 @@ class TodoItems extends Component{
         var listItems = todoEnteries.map(this.createTasks);
 
         return(
+            <React.Fragment>
             <ul className="theList" style={listStyle}>
                 {listItems}
                 <hr/>
                 <div id="tasks" style={taskStyle}><strong>Tasks in the List : </strong>{listItems.length}</div> 
             </ul>
+
+            
+        </React.Fragment>
+             
         );
     }
 };
