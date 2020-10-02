@@ -1,7 +1,7 @@
 .todoListMain{
     border: 2px solid black;
     padding: 20px;
-    background-color: lightcyan;
+    background-color: rgb(166, 252, 252);
 }
 
 .todoListMain .header input{
@@ -18,11 +18,11 @@
     margin-right: 0px;
     background-color: green;
     color: #FFF;
-    border: 2px solid darkgoldenrod;
+    border: 2px solid rgb(252, 195, 52);
 }
 
 .todoListMain .header button:hover{
-    background-color: #003399;
+    background-color: #028654;
     border: 2px solid darkgoldenrod;
     cursor: pointer;
 }
@@ -52,16 +52,12 @@ ul.theList{
 }
 
 .stats{
-    border: 2px solid black;
-    padding: 10px 0px 10px 20px;
+    border: 2px solid rgb(238, 45, 45);
+    padding: 10px 0px 10px 60px;
 }
 
 .btn-stats{
     margin: auto;
-}
-
-.select {
-    background-color: coral;
 }
 
 .all{

@@ -1,6 +1,6 @@
 body {
   padding: 50px;
-  background-color: grey;
+  background-color: rgb(42, 146, 243);
 }
 
 #container {
@@ -12,5 +12,5 @@ body {
   display: list-item;
   padding: 50px;
   height: 100vh;
-  background-color: rgb(247, 160, 120);
+  background-color: rgb(253, 60, 102);
 }

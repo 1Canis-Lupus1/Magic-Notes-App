@@ -1,5 +1,4 @@
 import React,{Component} from 'react';
-// import TodoItems from './TodoItems';
 import './TodoList.css';
 
 class TodoList extends Component{
@@ -136,7 +135,7 @@ class TodoList extends Component{
             else{
                 this.setState({
                     showItems: this.state.items
-                },()=>{console.log(this.state.showItems)})
+                })
             }
 
         })
