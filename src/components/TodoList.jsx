@@ -141,25 +141,14 @@ class TodoList extends Component{
 
         })
     }
-    
-    // edit(key,status){
-    //     this.edit(key,status);
-    // }
-    
-    // delete(key,status){
-    //     this.delete(key,status);
-    //     console.log(key,status)
-    // }
 
-    // handleCheck(key,status){
-    //     this.check(key,status);
-    // }
+    checked(key){
+        // console.log(e.target);
+        let item= this.state.showItems.find((item)=> item.key === key)
 
-    // active(key,status){
-    //     this.active(key,status);
-    // }
-
-
+        if(item.checked){return true}
+        else {return false}
+    }
     
     renderList(){
         const styling={
@@ -171,13 +160,21 @@ class TodoList extends Component{
 
         this.state.showItems.forEach((item)=>{
             listItem.push(
-            <li key={item.key} onDoubleClick={()=> this.editItem(item.key,item.status)} style={{display:"flex"}}><input type="checkbox" key={item.key} checked={this.props.isChecked} onClick={()=>this.checkItem(item.key,item.status)} />&nbsp;{item.text}<span style={styling} onClick={()=>this.deleteItem(item.key,item.status)}><strong>X</strong></span></li>
+            <li key={item.key} onDoubleClick={()=> this.editItem(item.key,item.status)} style={{display:"flex"}}><input type="checkbox" key={item.key} checked={this.checked(item.key)} onChange={()=>this.checkItem(item.key,item.status)} />&nbsp;{item.text}<span style={styling} onClick={()=>this.deleteItem(item.key,item.status)}><strong>X</strong></span></li>
 
         )});
 
         return listItem;
 
         // console.log(item.key)
+}
+
+activeCount(){
+    let count=0;
+    this.state.items.forEach((item)=>{
+        if(!item.checked){count++;}
+    })
+    return count;
 }
 
     render(){
@@ -209,7 +206,7 @@ class TodoList extends Component{
                     <ul className="theList" style={listStyle}>
                     {this.renderList()}
                     <hr/>
-                    {/* <div id="tasks" style={taskStyle}><strong>Tasks in the List : </strong>{this.renderList.length}</div>  */}
+                    <div id="tasks" style={taskStyle}><strong>Tasks in the List : </strong>{this.activeCount()}</div> 
                 </ul>
     
                     <div className="stats">
